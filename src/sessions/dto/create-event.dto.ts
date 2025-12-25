@@ -1,13 +1,14 @@
-import { IsString, IsOptional } from 'class-validator';
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+import { IsString, IsIn } from 'class-validator';
 
-export class CreateSessionDto {
+export class CreateEventDto {
   @IsString()
-  sessionId: string;
+  eventId: string;
 
-  @IsString()
-  language: string;
+  @IsIn(['user_speech', 'bot_speech', 'system'])
+  type: string;
 
-  @IsOptional()
-  metadata?: Record<string, any>;
+  payload: Record<string, any>;
+
+  timestamp: Date;
 }
